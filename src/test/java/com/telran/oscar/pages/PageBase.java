@@ -57,6 +57,19 @@ public class PageBase {
         }
     }
 
+//    public String takeScreenshot() {
+//
+//        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//
+//        File screenshot = new File("screenshots/screen-" + System.currentTimeMillis() + ".png");
+//        try {
+//            Files.copy(tmp, screenshot);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return screenshot.getAbsolutePath();
+//    }
+
     public void should(WebElement element, int time) {
         new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOf(element));
     }

@@ -15,15 +15,16 @@ public class RegisterTests extends TestBase {
     RegisterPage registerPage;
 
     public static String password = PropertiesLoader.loadProperty("valid.password");
-  
+
     @BeforeMethod
     public void pageInit() {
+   // public void setUp() {
         homePage = PageFactory.initElements(driver, HomePage.class);
         registerPage = PageFactory.initElements(driver, RegisterPage.class);
     }
 
     @BeforeMethod
-    public void preconditions() {
+    public void precondition() {
         homePage.clickOnLoginAndRegisterLink();
     }
 
