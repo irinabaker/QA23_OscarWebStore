@@ -6,6 +6,7 @@ import com.telran.oscar.utils.PropertiesLoader;
 import net.bytebuddy.dynamic.loading.PackageDefinitionStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class TestBase {
    // WebDriver driver;
     EventFiringWebDriver driver;
 
-    Logger logger = LoggerFactory.getLogger(TestBase.class);
+  //  Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     public static String baseURL = PropertiesLoader.loadProperty("url");
 
@@ -33,8 +34,11 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("window-size=1200x800");
     //    driver = new ChromeDriver();
-        driver = new EventFiringWebDriver(new ChromeDriver());
+        driver = new EventFiringWebDriver(new ChromeDriver(options));
         driver.get(baseURL);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

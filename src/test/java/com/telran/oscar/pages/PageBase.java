@@ -18,7 +18,7 @@ public class PageBase {
 
     public PageBase(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     public void click(WebElement element) {
@@ -34,7 +34,7 @@ public class PageBase {
     }
 
     public void shouldHaveText(WebElement element, String text, int time) {
-        new WebDriverWait(driver,time).until(ExpectedConditions.textToBePresentInElement(element,text));
+        new WebDriverWait(driver, time).until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
     public void pause(int millis) {
@@ -45,32 +45,20 @@ public class PageBase {
         }
     }
 
-    public void takeScreenshot(String pathToFile) {
+    public String takeScreenshot() {
 
-        File tmp = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        File screenshot = new File(pathToFile);
+        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
+        File screenshot = new File("screenshots/screen-" + System.currentTimeMillis() + ".png");
         try {
-            Files.copy(tmp,screenshot);
+            Files.copy(tmp, screenshot);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return screenshot.getAbsolutePath();
     }
 
-//    public String takeScreenshot() {
-//
-//        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//
-//        File screenshot = new File("screenshots/screen-" + System.currentTimeMillis() + ".png");
-//        try {
-//            Files.copy(tmp, screenshot);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return screenshot.getAbsolutePath();
-//    }
-
     public void should(WebElement element, int time) {
-        new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOf(element));
     }
 }
