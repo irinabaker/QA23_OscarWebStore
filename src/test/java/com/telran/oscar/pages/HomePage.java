@@ -25,4 +25,5 @@ public class HomePage extends PageBase{
         click(loginLink);
         return new RegisterPage(driver);
     }
+
 }
