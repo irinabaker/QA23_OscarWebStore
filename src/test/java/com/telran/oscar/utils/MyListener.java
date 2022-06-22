@@ -31,8 +31,8 @@ public class MyListener extends AbstractWebDriverEventListener {
         logger.error(throwable.toString());
 
         PageBase pageBase = new PageBase(driver);
-        pageBase.takeScreenshot();
 
-        logger.error(new PageBase(driver).takeScreenshot());
+     //  logger.error(new PageBase(driver).takeScreenshot());
+       logger.error(String.valueOf(new PageBase(driver).takeScreenshotWithScrollDown()));
     }
 }

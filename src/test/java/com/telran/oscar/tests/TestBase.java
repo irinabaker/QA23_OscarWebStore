@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    WebDriver driver;
-    //EventFiringWebDriver driver;
+    //WebDriver driver;
+    EventFiringWebDriver driver;
 
-  //  Logger logger = LoggerFactory.getLogger(TestBase.class);
+    Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     public static String baseURL = PropertiesLoader.loadProperty("url");
 
@@ -37,12 +37,12 @@ public class TestBase {
        // ChromeOptions options = new ChromeOptions();
       //  options.addArguments("headless");
       //  options.addArguments("window-size=1200x800");
-        driver = new ChromeDriver();
-        driver = new EventFiringWebDriver(new ChromeDriver());
+      //  driver = new ChromeDriver();
+       driver = new EventFiringWebDriver(new ChromeDriver());
         driver.get(baseURL);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-      //  driver.register(new MyListener());
+        driver.register(new MyListener());
     }
 
     @AfterMethod(enabled = true)
